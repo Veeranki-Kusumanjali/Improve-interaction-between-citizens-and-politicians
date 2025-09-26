@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicConnect - Bridging Citizens and Politicians</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Style for the active tab */
+        .tab-active {
+            border-bottom: 2px solid #3b82f6;
+            color: #3b82f6;
+        }
+        /* Simple transition for tab content */
+        .page-content, .auth-form {
+            display: none;
+        }
+        .page-content.active, .auth-form.active {
+            display: block;
+        }
+        .auth-tab {
+            transition: all 0.3s;
+        }
+        .auth-tab.active {
+            background-color: #3b82f6;
+            color: white;
+        }
+        .auth-tab:not(.active) {
+             background-color: #e5e7eb;
+             color: #374151;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-600">CivicConnect</a>
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#home" class="nav-tab tab-active" onclick="showPage('home', this)">Home</a>
+                <a href="#about" class="nav-tab" onclick="showPage('about', this)">About Us</a>
+                <a href="#services" class="nav-tab" onclick="showPage('services', this)">Services</a>
+                <a href="#register" class="nav-tab" onclick="showPage('register', this)">Register/Login</a>
+                <a href="#admin" class="nav-tab" onclick="showPage('admin', this)">Admin</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
+            <a href="#home" class="block nav-tab-mobile" onclick="showPage('home', this); closeMenu();">Home</a>
+            <a href="#about" class="block nav-tab-mobile" onclick="showPage('about', this); closeMenu();">About Us</a>
+            <a href="#services" class="block nav-tab-mobile" onclick="showPage('services', this); closeMenu();">Services</a>
+            <a href="#register" class="block nav-tab-mobile" onclick="showPage('register', this); closeMenu();">Register/Login</a>
+            <a href="#admin" class="block nav-tab-mobile" onclick="showPage('admin', this); closeMenu();">Admin</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-6 min-h-screen">
+
+        <!-- Home Page Content -->
+        <section id="home" class="page-content active">
+            <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Your Voice, Amplified.</h1>
+                <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">CivicConnect is a modern platform designed to make communication between you and your elected representatives seamless, transparent, and effective.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+                     <button onclick="showPage('register', document.querySelector('a[href=\'#register\']'))" class="w-full md:w-auto bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">Report an Issue</button>
+                    <button onclick="showPage('services', document.querySelector('a[href=\'#services\']'))" class="w-full md:w-auto bg-gray-200 text-gray-800 font-bold py-3 px-6 rounded-lg hover:bg-gray-300 transition duration-300">View Events</button>
+                </div>
+            </div>
+            <div class="mt-12 grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-xl font-semibold mb-2">Report Issues</h3>
+                    <p>Easily submit local problems with photos and details directly to the officials responsible for your area.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-xl font-semibold mb-2">Get Updates</h3>
+                    <p>Receive direct updates from politicians on issues you care about and track the progress of your reports.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                    <h3 class="text-xl font-semibold mb-2">Engage in Discussions</h3>
+                    <p>Provide feedback, participate in polls, and join community discussions to shape local governance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Page Content -->
+        <section id="about" class="page-content">
+             <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-center mb-6">About CivicConnect</h2>
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="md:w-1/2">
+                        <img src="https://placehold.co/600x400/3b82f6/ffffff?text=Community" alt="Community collaboration" class="rounded-lg shadow-md max-w-full h-auto">
+                    </div>
+                    <div class="md:w-1/2">
+                        <h3 class="text-2xl font-semibold mb-3">Our Mission</h3>
+                        <p class="text-gray-600 mb-4">Our mission is to foster a more transparent, responsive, and collaborative relationship between citizens and their elected officials. We believe that open communication is the cornerstone of effective governance and a thriving democracy.</p>
+                        <h3 class="text-2xl font-semibold mb-3">How It Works</h3>
+                        <p class="text-gray-600">CivicConnect provides a centralized platform where citizens can voice their concerns, politicians can address them, and moderators ensure that all interactions remain constructive and respectful. By streamlining this process, we aim to increase civic engagement and accountability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Page Content -->
+        <section id="services" class="page-content">
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <h2 class="text-3xl font-bold text-center mb-6">Upcoming Events & Workshops</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Date</th>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Mode</th>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Topic</th>
+                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Expert Speaker</th>
+                                <th class="text-center py-3 px-4 uppercase font-semibold text-sm">Register</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                            <tr>
+                                <td class="text-left py-3 px-4">Oct 15, 2025</td>
+                                <td class="text-left py-3 px-4">Online</td>
+                                <td class="text-left py-3 px-4">Urban Development & Green Spaces</td>
+                                <td class="text-left py-3 px-4 flex items-center">
+                                    <img src="https://placehold.co/40x40/e0e0e0/000000?text=AS" alt="Anika Sharma" class="w-10 h-10 rounded-full mr-3 max-w-full h-auto">
+                                    Anika Sharma
+                                </td>
+                                <td class="text-center py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Click Here</a></td>
+                            </tr>
+                            <tr class="bg-gray-50">
+                                <td class="text-left py-3 px-4">Nov 02, 2025</td>
+                                <td class="text-left py-3 px-4">In-Person</td>
+                                <td class="text-left py-3 px-4">Public Transportation Solutions</td>
+                                <td class="text-left py-3 px-4 flex items-center">
+                                    <img src="https://placehold.co/40x40/c0c0c0/000000?text=RJ" alt="Rohan Joshi" class="w-10 h-10 rounded-full mr-3 max-w-full h-auto">
+                                    Rohan Joshi
+                                </td>
+                                <td class="text-center py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Click Here</a></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left py-3 px-4">Nov 21, 2025</td>
+                                <td class="text-left py-3 px-4">Hybrid</td>
+                                <td class="text-left py-3 px-4">Digital Literacy for Seniors</td>
+                                <td class="text-left py-3 px-4 flex items-center">
+                                    <img src="https://placehold.co/40x40/a0a0a0/000000?text=PM" alt="Priya Mehta" class="w-10 h-10 rounded-full mr-3 max-w-full h-auto">
+                                    Priya Mehta
+                                </td>
+                                <td class="text-center py-3 px-4"><a href="#" class="text-blue-600 hover:underline">Click Here</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- User Registration/Login Page Content -->
+        <section id="register" class="page-content">
+            <div class="max-w-lg mx-auto bg-white p-8 rounded-lg shadow-lg">
+                <div class="flex border-b border-gray-200 mb-6">
+                    <button id="loginTab" class="auth-tab flex-1 py-3 font-semibold text-center rounded-t-lg" onclick="showAuthForm('login')">Login</button>
+                    <button id="registerTab" class="auth-tab flex-1 py-3 font-semibold text-center rounded-t-lg" onclick="showAuthForm('register')">Register</button>
+                </div>
+
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form">
+                    <h2 class="text-2xl font-bold text-center mb-6">Welcome Back!</h2>
+                    <div class="mb-4">
+                        <label for="login-email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                        <input type="email" id="login-email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="login-password" class="block text-gray-700 font-medium mb-2">Password</label>
+                        <input type="password" id="login-password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">Login</button>
+                </form>
+
+                <!-- Registration Form -->
+                <form id="registerForm" class="auth-form">
+                     <h2 class="text-2xl font-bold text-center mb-6">Create Your Account</h2>
+                    <div class="mb-4">
+                        <label for="role" class="block text-gray-700 font-medium mb-2">I am a...</label>
+                        <select id="role" name="role" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="citizen">Citizen</option>
+                            <option value="politician">Politician</option>
+                            <option value="moderator">Moderator</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="username" class="block text-gray-700 font-medium mb-2">Username</label>
+                        <input type="text" id="username" name="username" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                        <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
+                        <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-700 transition duration-300">Register</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Admin Page Content -->
+        <section id="admin" class="page-content">
+            <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+                 <h2 class="text-3xl font-bold text-center mb-6">Admin Portal</h2>
+                 <form>
+                     <div class="mb-4">
+                        <label for="admin-email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+                        <input type="email" id="admin-email" name="admin-email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <div class="mb-6">
+                        <label for="admin-password" class="block text-gray-700 font-medium mb-2">Password</label>
+                        <input type="password" id="admin-password" name="admin-password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    </div>
+                    <button type="submit" class="w-full bg-red-600 text-white font-bold py-3 px-6 rounded-lg hover:bg-red-700 transition duration-300">Login as Admin</button>
+                 </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="container mx-auto px-6 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left">
+                 <div class="mb-4 md:mb-0">
+                    <h3 class="text-xl font-bold">CivicConnect</h3>
+                    <p class="text-gray-400">Connecting communities, one conversation at a time.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition">Facebook</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">Twitter</a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">LinkedIn</a>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-gray-700 pt-4 text-center text-gray-500 text-sm">
+                &copy; 2025 CivicConnect. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        function closeMenu() {
+            mobileMenu.classList.add('hidden');
+        }
+
+        // --- Tab Navigation Logic ---
+        function showPage(pageId, clickedTab) {
+            // Hide all content sections
+            const pages = document.querySelectorAll('.page-content');
+            pages.forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show the selected content section
+            const activePage = document.getElementById(pageId);
+            if (activePage) {
+                activePage.classList.add('active');
+            }
+
+            // Update active tab style for desktop
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('tab-active');
+            });
+            if (clickedTab && clickedTab.classList.contains('nav-tab')) {
+                clickedTab.classList.add('tab-active');
+            }
+            
+            // If we are showing the register page, default to showing the login form
+            if (pageId === 'register') {
+                showAuthForm('login');
+            }
+
+            // Scroll to top of the page for better UX
+            window.scrollTo(0, 0);
+        }
+
+        // --- Authentication Form Toggle ---
+        const loginTab = document.getElementById('loginTab');
+        const registerTab = document.getElementById('registerTab');
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+
+        function showAuthForm(formToShow) {
+            if (formToShow === 'login') {
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+                loginTab.classList.add('active');
+                registerTab.classList.remove('active');
+            } else {
+                loginForm.classList.remove('active');
+                registerForm.classList.add('active');
+                loginTab.classList.remove('active');
+                registerTab.classList.add('active');
+            }
+        }
+
+        // Initialize with the home page shown and login form as default
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('home', document.querySelector('a[href="#home"]'));
+            showAuthForm('login');
+        });
+    </script>
+
+</body>
+</html>
